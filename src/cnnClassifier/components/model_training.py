@@ -5,6 +5,7 @@ import tensorflow as tf
 import time
 from pathlib import Path
 from cnnClassifier.entity.config_entity import TrainingConfig
+from cnnClassifier import logger
 
 
 class Training:
@@ -61,10 +62,14 @@ class Training:
             **dataflow_kwargs
         )
 
-    
-    @staticmethod
-    def save_model(path: Path, model: tf.keras.Model):
+
+
+    def save_model(self,path: Path, model: tf.keras.Model, epoch_path: Path):
         model.save(path)
+        last_epoch =  str(self.config.params_epochs)
+        f =open(epoch_path, "w+")
+        f.write(last_epoch)
+        f.close()
 
 
 
@@ -73,15 +78,31 @@ class Training:
         self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
         self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
 
+        if os.path.getsize("artifacts/training/model.h5") != 0:
+            self.model = tf.keras.models.load_model("artifacts/training/model.h5")
+
+
+        if os.path.getsize("epochs.txt") != 0:
+            f = open("epochs.txt", "r")
+            initial_epoch = int(f.read())
+        else:
+            initial_epoch = 0
+
+
+        logger.info(f"***** training started from epoch   {initial_epoch} ******")
+
         self.model.fit(
             self.train_generator,
             epochs=self.config.params_epochs,
             steps_per_epoch=self.steps_per_epoch,
             validation_steps=self.validation_steps,
-            validation_data=self.valid_generator
+            validation_data=self.valid_generator,
+            initial_epoch = initial_epoch
         )
 
         self.save_model(
             path=self.config.trained_model_path,
-            model=self.model
-        )
+            model=self.model,
+            epoch_path= Path("epochs.txt")
+
+        ) 
