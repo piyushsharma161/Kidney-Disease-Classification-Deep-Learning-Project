@@ -89,20 +89,24 @@ class Training:
             initial_epoch = 0
 
 
-        logger.info(f"***** training started from epoch   {initial_epoch} ******")
 
-        self.model.fit(
-            self.train_generator,
-            epochs=self.config.params_epochs,
-            steps_per_epoch=self.steps_per_epoch,
-            validation_steps=self.validation_steps,
-            validation_data=self.valid_generator,
-            initial_epoch = initial_epoch
-        )
+        if  self.config.params_epochs > initial_epoch:
+            logger.info(f"***** training started from epoch   {initial_epoch} ******")
 
-        self.save_model(
-            path=self.config.trained_model_path,
-            model=self.model,
-            epoch_path= Path("epochs.txt")
+            self.model.fit(
+                self.train_generator,
+                epochs=self.config.params_epochs,
+                steps_per_epoch=self.steps_per_epoch,
+                validation_steps=self.validation_steps,
+                validation_data=self.valid_generator,
+                initial_epoch = initial_epoch
+            )
 
-        ) 
+            self.save_model(
+                path=self.config.trained_model_path,
+                model=self.model,
+                epoch_path= Path("epochs.txt")
+
+            ) 
+        else:
+            logger.info(f"***** Number of epochs {self.config.params_epochs} is less than or equal to initial epoch   {initial_epoch}  make it greater than {initial_epoch} epoch to start the training.******")
