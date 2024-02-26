@@ -91,7 +91,7 @@ class Training:
 
 
         if  self.config.params_epochs > initial_epoch:
-            logger.info(f"***** training started from epoch   {initial_epoch} ******")
+            logger.info(f"***** training started from epoch   {initial_epoch+1} ******")
 
             self.model.fit(
                 self.train_generator,
