@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/72cc5c28b18549999cd79c5f4d842bec/artifacts
+end_time: 1709101864167
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 72cc5c28b18549999cd79c5f4d842bec
+run_name: monumental-pig-136
+run_uuid: 72cc5c28b18549999cd79c5f4d842bec
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709101854251
+status: 4
+tags: []
+user_id: vivek

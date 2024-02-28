@@ -1,4 +1,6 @@
 import tensorflow as tf
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 import mlflow
 import mlflow.keras
@@ -54,6 +56,11 @@ class Evaluation:
 
     
     def log_into_mlflow(self):
+        load_dotenv()
+        os.environ["MLFLOW_TRACKING_URI"]      = os.getenv("MLFLOW_TRACKING_URI")
+        os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("MLFLOW_TRACKING_USERNAME")
+        os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("MLFLOW_TRACKING_PASSWORD")
+        #mlflow.set_tracking_uri(tracking_uri)
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         

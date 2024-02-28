@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/96eeaa807e6d428b9c1c9692a9316930/artifacts
+end_time: 1709104565758
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 96eeaa807e6d428b9c1c9692a9316930
+run_name: resilient-lamb-232
+run_uuid: 96eeaa807e6d428b9c1c9692a9316930
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709104556200
+status: 4
+tags: []
+user_id: vivek

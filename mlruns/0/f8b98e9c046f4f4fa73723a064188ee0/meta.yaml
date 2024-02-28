@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/f8b98e9c046f4f4fa73723a064188ee0/artifacts
+end_time: 1709100516626
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f8b98e9c046f4f4fa73723a064188ee0
+run_name: ambitious-grouse-845
+run_uuid: f8b98e9c046f4f4fa73723a064188ee0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709100506958
+status: 4
+tags: []
+user_id: vivek
