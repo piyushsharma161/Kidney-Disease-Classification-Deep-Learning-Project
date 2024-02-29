@@ -37,8 +37,7 @@ stages:
       - EPOCHS
       - BATCH_SIZE
       - AUGMENTATION
-    outs:
-      - model/model.h5
+    
  
 
 
