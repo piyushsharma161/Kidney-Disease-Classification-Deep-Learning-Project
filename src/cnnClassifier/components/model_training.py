@@ -1,5 +1,6 @@
 import os
 import urllib.request as request
+import shutil
 from zipfile import ZipFile
 import tensorflow as tf
 import time
@@ -71,18 +72,20 @@ class Training:
         f.write(last_epoch)
         f.close()
 
-
+    def copy_model(self, from_path : Path, to_path : Path):
+        shutil.copy(from_path, to_path)
+        
 
     
     def train(self):
         self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
         self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
 
-        if os.path.getsize("artifacts/training/model.h5") != 0:
+        if os.path.isfile("artifacts/training/model.h5") == True:
             self.model = tf.keras.models.load_model("artifacts/training/model.h5")
 
 
-        if os.path.getsize("epochs.txt") != 0:
+        if os.path.getsize("epochs.txt") != 0 and os.path.isfile("artifacts/training/model.h5") == True:
             f = open("epochs.txt", "r")
             initial_epoch = int(f.read())
         else:
@@ -108,5 +111,11 @@ class Training:
                 epoch_path= Path("epochs.txt")
 
             ) 
+            
+            self.copy_model(
+                from_path = Path('artifacts/training/model.h5'), 
+                to_path = Path('model/model.h5') 
+            ) 
+
         else:
             logger.info(f"***** Number of epochs {self.config.params_epochs} is less than or equal to initial epoch   {initial_epoch}  make it greater than {initial_epoch} epoch to start the training.******")

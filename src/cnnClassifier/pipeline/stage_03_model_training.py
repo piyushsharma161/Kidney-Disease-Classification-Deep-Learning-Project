@@ -19,6 +19,7 @@ class ModelTrainingPipeline:
         training.get_base_model()
         training.train_valid_generator()
         training.train()
+        #training.copy_model('artifacts/training/model.h5', 'model/model.h5')
 
 
 
