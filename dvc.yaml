@@ -30,14 +30,15 @@ stages:
       - config/config.yaml
       - artifacts/data_ingestion/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone
       - artifacts/prepare_base_model
-      - artifacts/training/model.h5
+      - model/model.h5
       - epochs.txt
     params:
       - IMAGE_SIZE
       - EPOCHS
       - BATCH_SIZE
       - AUGMENTATION
-    
+    outs:
+      - artifacts/training/model.h5
  
 
 

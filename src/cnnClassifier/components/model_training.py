@@ -81,11 +81,11 @@ class Training:
         self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
         self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
 
-        if os.path.isfile("artifacts/training/model.h5") == True:
-            self.model = tf.keras.models.load_model("artifacts/training/model.h5")
+        if os.path.isfile("model/model.h5") == True:
+            self.model = tf.keras.models.load_model("model/model.h5")
 
 
-        if os.path.getsize("epochs.txt") != 0 and os.path.isfile("artifacts/training/model.h5") == True:
+        if os.path.getsize("epochs.txt") != 0 and os.path.isfile("model/model.h5") == True:
             f = open("epochs.txt", "r")
             initial_epoch = int(f.read())
         else:
